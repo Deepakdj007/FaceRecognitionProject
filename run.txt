@@ -1,0 +1,1 @@
+python face_recognize.py -d train_dir -i 236.jpg
