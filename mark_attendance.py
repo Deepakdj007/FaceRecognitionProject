@@ -2,13 +2,13 @@
 from pymongo import MongoClient as mc
 import datetime
 
-username = "Deepak"
-password = "DeepakJose"
+username = "Abishek"
+password = "Rajagiri123!"
 
 cl = mc(f"mongodb+srv://{username}:{password}@db.bpuc5.mongodb.net/test")
 db = cl['Attendance']
 
-coll = [db['sam0'], db['students'], db['subjects']]
+coll = [db['attendance'], db['students'], db['subjects']]
 
 """
 ret = input("Enter RETID: ")
@@ -78,14 +78,14 @@ def updateAttendance(l, t):
 
     for _ in range(len(timetable)):
         if timetable[_][0] <= t < timetable[_][1]:
-            P = "P{_+1}"
+            P = f"P{_+1}"
             break
 
     #read list of students 'l'
 
     for _ in l:
         find = {
-            "RETID": _
+            "_id": _
         }
 
         up = {
@@ -96,4 +96,30 @@ def updateAttendance(l, t):
 
         x = coll[0].update_many(find, up)
 
-    print(f"{x.modified_count} updated.")
+    #print(f"{x.modified_count} updated.")
+
+    """
+    from pymongo import MongoClient
+
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://Abishek:Rajagiri123!@db.bpuc5.mongodb.net/test')
+result = client['Attendance']['attendance'].aggregate([
+    {
+        '$project': {
+            '2022-04-06': 1
+        }
+    }, {
+        '$set': {
+            '2022-04-06.P1': '0', 
+            '2022-04-06.P2': '0', 
+            '2022-04-06.P3': '0', 
+            '2022-04-06.P4': '0', 
+            '2022-04-06.P5': '0', 
+            '2022-04-06.P6': '0', 
+            '2022-04-06.P7': '0'
+        }
+    }
+])
+    """
