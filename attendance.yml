@@ -1,6 +1,0 @@
-name: attendance
-dependencies:
-  - face_recognition
-  - scikit-learn
-  - dlib
-  - docopt
