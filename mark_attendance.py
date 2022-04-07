@@ -58,7 +58,7 @@ timetable = [
 ]
 
 
-def initial():
+""" def initial():
     find = {}
 
     for _ in range(1, 8):
@@ -70,14 +70,12 @@ def initial():
 
         x = coll[0].update_many(find, up)
 
-    print(f"{x.modified_count} updated.")
+    print(f"{x.modified_count} updated.")  """
 
-def updateAttendance(l, t):
-
-    #read time 't'
+def updateAttendance(l, t): #'l' contains id's of students in a set and 't' contains the time in string format
 
     for _ in range(len(timetable)):
-        if timetable[_][0] <= t < timetable[_][1]:
+        if timetable[_][0] <= t <= timetable[_][1]:
             P = f"P{_+1}"
             break
 

@@ -58,6 +58,7 @@ def face_recognize_train(dir):
   
 def main():
     args = docopt.docopt(__doc__)
+    print(args)
     train_dir = args["--train_dir"]
     face_recognize_train(train_dir)
   
