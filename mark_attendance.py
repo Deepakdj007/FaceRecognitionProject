@@ -1,11 +1,14 @@
-#import pymongo
 from pymongo import MongoClient as mc
 import datetime
+from certifi import where
 
 username = "Abishek"
 password = "Rajagiri123!"
 
-cl = mc(f"mongodb+srv://{username}:{password}@db.bpuc5.mongodb.net/test")
+ca = where()
+uri = f"mongodb+srv://{username}:{password}@db.bpuc5.mongodb.net/test"
+
+cl = mc(uri, tlsCAFile = ca)
 db = cl['Attendance']
 
 coll = [db['attendance'], db['students'], db['subjects']]
