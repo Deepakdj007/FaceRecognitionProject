@@ -92,6 +92,8 @@ def updateAttendance(l, t): #'l' contains id's of students in a set and 't' cont
         }
 
         x = coll[0].update_many(find, up)
+        
+        
 
     #print(f"{x.modified_count} updated.")
 

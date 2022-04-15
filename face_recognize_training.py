@@ -1,12 +1,3 @@
-"""
-Usage:
-  face_recognize.py -d <train_dir>
-  
-Options:
-  -h, --help                     Show this help
-  -d, --train_dir =<train_dir>   Directory with 
-                                 images for training
-"""
 import face_recognition
 import docopt
 from sklearn import svm

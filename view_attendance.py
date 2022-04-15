@@ -1,4 +1,3 @@
-
 from pymongo import MongoClient as mc
 from certifi import where
 import pandas as pd
@@ -35,7 +34,7 @@ today = df[l]
 today.columns = ['RETID','P1','P2','P3','P4','P5','P6','P7']
 today = today.style.apply(HIGHLIGHT_COLOR).hide(axis='index')
 
-
+    
 dfi.export(today,"Todays Attendance.png")
 
 """writer = pd.ExcelWriter('Todays_Attendance.xlsx', engine='xlsxwriter')

@@ -1,12 +1,3 @@
-"""
-Usage:
-  face_recognize.py -i <test_image>
-  
-Options:
-  -h, --help                     Show this help
-  -i, --test_image =<test_image> Test image
-"""
-
 from copyreg import pickle
 import face_recognition
 import docopt
@@ -17,6 +8,8 @@ from datetime import datetime
 import pickle
 import mark_attendance
 import csv
+from tkinter import Tk   
+from tkinter.filedialog import askopenfilename
 
 attendanceSheet = set()
 
@@ -30,6 +23,7 @@ def addId(attendanceSheet):
     dtString = now.strftime('%H:%M:%S')
     
     mark_attendance.updateAttendance(attendanceSheet,dtString)
+    
 
 def face_recognize_test(test):
     
@@ -66,8 +60,8 @@ def face_recognize_test(test):
                break
 
 def main():
-    args = docopt.docopt(__doc__)
-    test_image = args["--test_image"]
+    Tk().withdraw()
+    test_image = askopenfilename()
     face_recognize_test(test_image)
   
 if __name__=="__main__":
