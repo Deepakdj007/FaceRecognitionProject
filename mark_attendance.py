@@ -1,3 +1,5 @@
+#import pymongo
+from imp import init_builtin
 from pymongo import MongoClient as mc
 import datetime
 from certifi import where
@@ -13,42 +15,6 @@ db = cl['Attendance']
 
 coll = [db['attendance'], db['students'], db['subjects']]
 
-"""
-ret = input("Enter RETID: ")
-name = input("Enter name: ")
-e1 = input("Enter subject code of departmental elective: ")
-e2 = input("Enter subject code of global elective: ")
-
-#retrieving results
-x = c[1].find({
-    "name": name
-}, {
-    "name": 1,
-    "core": 1
-})
-
-for _ in x:
-    for __ in _: print(f"{__}: {_[__]}")
-
-#inserting records
-d = {
-    "RETID": ret,
-    "name": name,
-    "class": "S8 CSE a",
-    "core": ['CS402', 'CS404', 'CS492'],
-    "elective": [
-        {
-            "dept": e1
-        },
-        {
-            "global": e2
-        }
-    ]
-}
-
-x = c[1].insert_one(d)
-"""
-
 date = datetime.datetime.now().strftime("%Y-%m-%d")
 timetable = [
     ["08:30:00", "09:34:59"],
@@ -61,29 +27,59 @@ timetable = [
 ]
 
 
-""" def initial():
+def initializeDay(d):
     find = {}
 
     for _ in range(1, 8):
         up = {
             "$set": {
-                f"{date}.P{_}": "0"
+                f"{d}.P{_}": "0"
             }
         }
 
         x = coll[0].update_many(find, up)
-
-    print(f"{x.modified_count} updated.")  """
+        
+def initializePeriod(P):
+    find = {}
+    up = {
+        "$set": {
+            f"{date}.{P}": "0"
+        }
+    }
+    x = coll[0].update_many(find, up)
 
 def updateAttendance(l, t): #'l' contains id's of students in a set and 't' contains the time in string format
+    """ if t < timetable[0][0] or timetable[0][0] < t <= timetable[0][1]:
+        initial(date)
 
+    elif t > timetable[-1][-1] or timetable[-1][0] < t < timetable[-1][1]:
+        day = datetime.datetime.now().strftime("%w")
+        if day == 5:
+            date1 = datetime.datetime.now() + datetime.timedelta(3)
+            date1 = datetime.datetime.now().strftime("%Y-%m-%d")
+
+    """
+   
+    find = {
+        f"{date}": {
+            "$exists": False
+        }
+    }
+
+    x = coll[0].count_documents(find)
+
+    if x:
+        initializeDay(date)
+   
     for _ in range(len(timetable)):
         if timetable[_][0] <= t <= timetable[_][1]:
             P = f"P{_+1}"
             break
 
-    #read list of students 'l'
-
+    #setting attendance of a period to 0
+    initializePeriod(P)
+    
+    #marking attendance
     for _ in l:
         find = {
             "_id": _
@@ -99,28 +95,4 @@ def updateAttendance(l, t): #'l' contains id's of students in a set and 't' cont
 
     #print(f"{x.modified_count} updated.")
 
-    """
-    from pymongo import MongoClient
 
-# Requires the PyMongo package.
-# https://api.mongodb.com/python/current
-
-client = MongoClient('mongodb+srv://Abishek:Rajagiri123!@db.bpuc5.mongodb.net/test')
-result = client['Attendance']['attendance'].aggregate([
-    {
-        '$project': {
-            '2022-04-06': 1
-        }
-    }, {
-        '$set': {
-            '2022-04-06.P1': '0', 
-            '2022-04-06.P2': '0', 
-            '2022-04-06.P3': '0', 
-            '2022-04-06.P4': '0', 
-            '2022-04-06.P5': '0', 
-            '2022-04-06.P6': '0', 
-            '2022-04-06.P7': '0'
-        }
-    }
-])
-    """

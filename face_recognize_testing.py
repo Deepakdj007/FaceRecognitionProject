@@ -15,19 +15,21 @@ import os
 import cv2
 from datetime import datetime
 import pickle
+import mark_attendance
+import csv
 
+attendanceSheet = set()
 
-def markAttendance(name):
-    with open('Attendance.csv','a+') as f:
-        myDataList = f.readlines()
-        nameList = []
-        for line in myDataList:
-            entry = line.split(',')
-            nameList.append(entry[0])
-        if name not in nameList:
-            now = datetime.now()
-            dtString = now.strftime('%H:%M:%S')
-            f.writelines(f'{name}, {dtString}\n')
+def addId(attendanceSheet):
+    
+    """with open('Attendance.csv', 'a+') as f:
+        writer = csv.writer(f)
+        writer.writerow(list(attendanceSheet))"""
+            
+    now = datetime.now() 
+    dtString = now.strftime('%H:%M:%S')
+    
+    mark_attendance.updateAttendance(attendanceSheet,dtString)
 
 def face_recognize_test(test):
     
@@ -54,8 +56,9 @@ def face_recognize_test(test):
         student_name = name[0]
         cv2.rectangle(test_image,(x1,y1),(x2,y2),(0,255,0),2)
         cv2.putText(test_image,student_name,(x1+6,y2+25),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,0,0),2)
-        markAttendance(student_name)
+        attendanceSheet.add(student_name)
         print(student_name)
+    addId(attendanceSheet)
     cv2.imshow('Webcam', cv2.cvtColor(test_image,cv2.COLOR_BGR2RGB))
     while(1):
         k = cv2.waitKey(33)
