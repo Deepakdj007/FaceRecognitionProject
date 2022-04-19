@@ -16,7 +16,7 @@ db = cl['Attendance']
 coll = [db['attendance'], db['students'], db['subjects']]
 
 date = datetime.datetime.now().strftime("%Y-%m-%d")
-timetable = [
+"""timetable = [
     ["08:30:00", "09:34:59"],
     ["09:35:00", "10:30:59"],
     ["10:45:00", "11:34:59"],
@@ -24,7 +24,7 @@ timetable = [
     ["13:30:00", "14:29:59"],
     ["14:40:00", "15:34:59"],
     ["15:35:00", "16:29:59"]
-]
+]"""
 
 
 def initializeDay(d):
@@ -48,7 +48,7 @@ def initializePeriod(P):
     }
     x = coll[0].update_many(find, up)
 
-def updateAttendance(l, t): #'l' contains id's of students in a set and 't' contains the time in string format
+def updateAttendance(l): #'l' contains id's of students in a set and 't' contains the time in string format
     """ if t < timetable[0][0] or timetable[0][0] < t <= timetable[0][1]:
         initial(date)
 
@@ -71,11 +71,16 @@ def updateAttendance(l, t): #'l' contains id's of students in a set and 't' cont
     if x:
         initializeDay(date)
    
-    for _ in range(len(timetable)):
+    """for _ in range(len(timetable)):
         if timetable[_][0] <= t <= timetable[_][1]:
             P = f"P{_+1}"
-            break
-
+            break"""
+            
+    n = -1
+    while n not in range(1, 8):
+        n = int(input("Enter period number: "))
+#    p = input("Enter period number: ")
+    P = f"P{n}"
     #setting attendance of a period to 0
     initializePeriod(P)
     

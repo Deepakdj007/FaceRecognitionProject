@@ -6,7 +6,7 @@ import os
 import cv2
 from datetime import datetime
 import pickle
-import mark_attendance
+from . import mark_attendance
 import csv
 from tkinter import Tk   
 from tkinter.filedialog import askopenfilename
@@ -19,15 +19,15 @@ def addId(attendanceSheet):
         writer = csv.writer(f)
         writer.writerow(list(attendanceSheet))"""
             
-    now = datetime.now() 
-    dtString = now.strftime('%H:%M:%S')
+    #now = datetime.now() 
+    #dtString = now.strftime('%H:%M:%S')
     
-    mark_attendance.updateAttendance(attendanceSheet,dtString)
+    mark_attendance.updateAttendance(attendanceSheet)
     
 
 def face_recognize_test(test):
     
-    clf = pickle.load(open('attendance_model.sav','rb'))
+    clf = pickle.load(open('F:\Deepak_Jose_RSET\FaceRecognitionProject\AttendanceSystem\AttendanceSystem\_attendance_model.sav','rb'))
     
     # Load the test image with unknown faces into a numpy array
     test_image = face_recognition.load_image_file(test)
@@ -63,6 +63,7 @@ def main():
     Tk().withdraw()
     test_image = askopenfilename()
     face_recognize_test(test_image)
+    print("Attendnance marked")
   
 if __name__=="__main__":
     main()
