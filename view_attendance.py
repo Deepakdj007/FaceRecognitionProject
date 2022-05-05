@@ -6,7 +6,7 @@ import dataframe_image as dfi
 ca = where()
 cl = mc("mongodb+srv://Abishek:Rajagiri123!@db.bpuc5.mongodb.net/test",tlsCAFile = ca)
 db = [cl[_] for _ in sorted(cl.list_database_names())]
-coll = [db[0][_] for _ in sorted(db[0].list_collection_names())]
+coll = [db[1][_] for _ in sorted(db[0].list_collection_names())]
 
 data = list(coll[0].find())
 df = pd.DataFrame(data)
