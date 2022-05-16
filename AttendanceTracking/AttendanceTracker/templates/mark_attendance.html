@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <h1>Enter Details</h1>
+    <form method="get" action="{% url 'attendance_marked' %}">
+
+        <label for="class">Class</label>
+        <select id="class" name="class">
+          <option value="S8CSEa">S8 CSE alpha</option>
+          <option value="S8CSEb">S8 CSE beta</option>
+          <option value="S8CSEc">S8 CSE gamma</option>
+        </select>
+
+        <label for="hour">Hour</label>
+        <select id="hour" name="hour">
+          <option value="1">period 1</option>
+          <option value="2">period 2</option>
+          <option value="3">period 3</option>
+          <option value="4">period 4</option>
+          <option value="5">period 5</option>
+          <option value="6">period 6</option>
+          <option value="7">period 7</option>
+        </select>
+      
+        <input type="submit" value="Submit">
+      </form>
+      {% endblock %}
+</body>
+</html>
