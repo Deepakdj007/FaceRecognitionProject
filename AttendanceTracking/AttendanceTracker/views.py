@@ -16,7 +16,6 @@ def Table(request):
   
     return HttpResponse(attendance_table)
 
-# Create your views here.
 def view_attendance_page(request):
     return render(request, 'view_attendance.html',{})
 

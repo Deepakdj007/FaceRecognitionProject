@@ -55,21 +55,24 @@ def take_attendance(test, C, P):
         test_img_encoding = test_image_encodings[i]
         name = clf.predict([test_img_encoding])
         student_name = name[0]
-
+        """
         cv2.rectangle(test_image,(x1,y1),(x2,y2),(0,255,0),2)
         cv2.putText(test_image,student_name,(x1+6,y2+25),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,0,0),2)
-        
+        """
 
         attendanceSheet.add(student_name)
         print(student_name)
+        
     addId(C, P, attendanceSheet)
     
   
+    """
     cv2.imshow('Webcam', cv2.cvtColor(test_image,cv2.COLOR_BGR2RGB))
     while(1):
         k = cv2.waitKey(33)
         if k==27:    # Esc key to stop
                break
+    """
 
 def main(class_name,period):
     #-------------------------------
@@ -79,7 +82,7 @@ def main(class_name,period):
     """
     mark_attendance.validate(class_name, period)
     #-------------------------------
-    Tk().withdraw()
+    Tk()
     test_image = askopenfilename()
     take_attendance(test_image, class_name, period)
     print("Attendnance marked.")
