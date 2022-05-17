@@ -5,11 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+    </style>
 </head>
 <body>
     {% include 'base.html' %}
 
     {% block content %}
+    {% if user.is_authenticated %}
+    <h1>
+        <center>
+            Hi {{ user.username }}!
+        </center>
+        
+    </h1>
+    <p><a href="{% url 'logout' %}"><button class="button">Log Out</button></a></p>    
+    {% else %}
+        <a href="{% url 'login' %}"><button class="button">Log In</button></a>
+    {% endif %}
     <h1>
         <center>
             Welcome to automated attendance tracking system

@@ -184,4 +184,3 @@ def updateAttendance(C, P, l):
 
     for _ in 
 """
-print("poetry")

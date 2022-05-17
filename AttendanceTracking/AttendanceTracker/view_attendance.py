@@ -40,8 +40,6 @@ def view_att(class_date,class_name):
         "_id": 0
     }
     C = class_name
-    print(C)
-    print(type(C))
     find = {
     'class': C
     }
@@ -58,7 +56,6 @@ def view_att(class_date,class_name):
         quit()
 
     l = [_['RETID'] for _ in l[0]['students']]
-    print(l)
 
     L = []
     for _ in l:

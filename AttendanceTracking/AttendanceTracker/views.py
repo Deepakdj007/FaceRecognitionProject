@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import HttpResponse
 import pandas as pd
 from . import view_attendance, face_rec_take_attendance
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request,'home.html',{})
@@ -16,12 +17,13 @@ def Table(request):
   
     return HttpResponse(attendance_table)
 
+@login_required
 def view_attendance_page(request):
     return render(request, 'view_attendance.html',{})
-
+@login_required
 def edit_attendance_page(request):
     return render(request, 'edit_attendance.html',{})
-
+@login_required
 def mark_attendance_page(request):
     
     return render(request, 'mark_attendance.html',{})

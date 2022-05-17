@@ -82,7 +82,7 @@ def main(class_name,period):
     """
     mark_attendance.validate(class_name, period)
     #-------------------------------
-    Tk()
+    Tk().withdraw()
     test_image = askopenfilename()
     take_attendance(test_image, class_name, period)
     print("Attendnance marked.")
