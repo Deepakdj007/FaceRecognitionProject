@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Notification</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        .button-1{
+            background-color: rgb(29, 31, 39);
+            border: 1px solid rgb(29, 31, 39);
+            border-radius: 4px;
+            box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            outline: none;
+            outline: 0;
+            padding: 10px 25px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 150ms, box-shadow 150ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            position:relative;
+            left:40%;
+          }
+          
+          .button-1:hover {
+            box-shadow: rgba(0, 0, 0, 0.329) 0px 15px 30px -5px;
+            transform: translateY(-2px);
+          }
+          
+          @media (min-width: 768px) {
+            .button-1 {
+              padding: 8px 20px;
+            }
+        }
+        .button-3{
+          background-color: rgb(29, 31, 39);
+          border: 1px solid rgb(29, 31, 39);
+          border-radius: 4px;
+          box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+          box-sizing: border-box;
+          color: #fff;
+          cursor: pointer;
+          font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          outline: none;
+          outline: 0;
+          padding: 10px 25px;
+          text-align: center;
+          transform: translateY(0);
+          transition: transform 150ms, box-shadow 150ms;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          position:relative;
+          left:42%;
+        }
+        
+        .button-3:hover {
+          box-shadow: rgba(0, 0, 0, 0.329) 0px 15px 30px -5px;
+          transform: translateY(-2px);
+        }
+        
+        @media (min-width: 768px) {
+          .button-3 {
+            padding: 8px 20px;
+          }
+      }
+        .gradient-custom {            
+          /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          background: #F2F2F2;
+          }
+          .table-condensed{
+            font-size: 15px;
+            border: 2px;
+            border-radius: 16px;
+            box-shadow: rgba(0, 0, 0, 0.76) 0px 15px 30px -5px;
+          }
+    </style>
+</head>
+{% include 'base.html' %}
+
+{% block content %}
+<body class="vh-100 gradient-custom">
+  
+<div class="container">
+    <br><br>
+    <h2 style="color: rgb(14, 15, 19);" class="text-center">Low Attendance Students List</h2><br><br><br>            
+    <table class="table table-dark table-striped table-hover table-responsive table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th>RETID</th>
+          <th>Name</th>
+          <th>Phone_no</th>
+          <th>Email_ID</th>
+          <th>DOB</th>
+          <th>Subject_1</th>
+          <th>Subject_2</th>
+          <th>Subject_3</th>
+          <th>Subject_4</th>
+          <th>Subject_5</th>
+        </tr>
+      </thead>
+      <tbody>
+      <!-- jinja2 Technique -->
+      {% if d %}  
+      {% for i in d %}
+        <tr>
+          <td>{{i.RETID}}</td>
+          <td>{{i.Name}}</td>
+          <td>{{i.Phone_no}}</td>
+          <td>{{i.Email_ID}}</td>
+          <td>{{i.DOB}}</td>
+          <td>{{i.Subject_1}}</td>
+          <td>{{i.Subject_2}}</td>
+          <td>{{i.Subject_3}}</td>
+          <td>{{i.Subject_4}}</td>
+          <td>{{i.Subject_5}}</td>
+        </tr>
+      {% endfor %}
+      {% endif %}
+      </tbody>
+    </table>
+  </div><br>
+    <form method="post" action="{% url 'notified' %}">
+        {% csrf_token %}
+        <button style="color: rgb(255, 255, 255);" type="submit" name="run_mail" class="button-1"><i style="color: rgb(35, 172, 226);" class="fa fa-envelope" aria-hidden="true"></i> Mail</button>
+        <button style="color: rgb(255, 255, 255);" type="submit" name="run_whatsapp" class="button-3"><i style="color: rgb(35, 172, 226);" class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp</button>
+    </form>
+  </body>
+
+{% endblock %}
+</html>

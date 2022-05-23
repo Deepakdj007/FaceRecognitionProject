@@ -1,13 +1,13 @@
 from copyreg import pickle
 import face_recognition
-import docopt
+#import docopt
 from sklearn import svm
 import os
 import cv2
 from datetime import datetime
 import pickle
 from . import mark_attendance
-import csv
+#import csv
 from tkinter import Tk   
 from tkinter.filedialog import askopenfilename
 
@@ -55,10 +55,12 @@ def take_attendance(test, C, P):
         test_img_encoding = test_image_encodings[i]
         name = clf.predict([test_img_encoding])
         student_name = name[0]
-        """
+        
+        """       
         cv2.rectangle(test_image,(x1,y1),(x2,y2),(0,255,0),2)
         cv2.putText(test_image,student_name,(x1+6,y2+25),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,0,0),2)
         """
+       
 
         attendanceSheet.add(student_name)
         print(student_name)
@@ -66,13 +68,15 @@ def take_attendance(test, C, P):
     addId(C, P, attendanceSheet)
     
   
-    """
+   
+    """    
     cv2.imshow('Webcam', cv2.cvtColor(test_image,cv2.COLOR_BGR2RGB))
     while(1):
         k = cv2.waitKey(33)
-        if k==27:    # Esc key to stop
-               break
+        if k==27:
+            break # Esc key to stop
     """
+    
 
 def main(class_name,period):
     #-------------------------------

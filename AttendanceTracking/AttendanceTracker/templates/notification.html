@@ -3,10 +3,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Attendance</title>
+    <title>Send Notification</title>
     <style>
   
-      input[type=submit]{
+      .notibut{
         background-color: #13aa52;
         border: 1px solid #13aa52;
         border-radius: 4px;
@@ -27,13 +27,13 @@
         touch-action: manipulation;
       }
       
-      input[type=submit]:hover {
+      .notibut:hover {
         box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
         transform: translateY(-2px);
       }
       
       @media (min-width: 768px) {
-        input[type=submit] {
+        .notibut {
           padding: 10px 30px;
         }
       }
@@ -68,31 +68,21 @@
           </p>
         </div>
         <div class=" box">
-    <h2 style="color: white;" ><br> Enter Details</h2>
+    <h2 style="color: white;" ><br> Enter Class</h2>
     <br>
-    <form method="get" action="{% url 'attendance_marked' %}">
+    <form method="post" action="{% url 'send_notification' %}">
+      {% csrf_token %}
         <div >
         <label style="color: white;" for="class">Class</label>
         <select id="class" name="class">
-          <option value="S8CSEa">S8 CSE alpha</option>
+          <option value="S8CSEa(old)">S8 CSE alpha</option>
           <option value="S8CSEb">S8 CSE beta</option>
           <option value="S8CSEc">S8 CSE gamma</option>
-        </select>
-
-        <label style="color: white;" for="hour">Hour</label>
-        <select id="hour" name="hour">
-          <option value="1">period 1</option>
-          <option value="2">period 2</option>
-          <option value="3">period 3</option>
-          <option value="4">period 4</option>
-          <option value="5">period 5</option>
-          <option value="6">period 6</option>
-          <option value="7">period 7</option>
         </select>
       </div>
         <br>
         <br>
-        <input type="submit" value="Submit">
+        <button type="submit" value="Submit" name="run_script" class="notibut">Submit</button>
       </form>
     </div>
 </div>

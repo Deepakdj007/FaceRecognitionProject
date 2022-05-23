@@ -10,38 +10,108 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
     <style>
-        a.nav-link:link {
-          background-color: transparent;
+        .btn_hm {
+            background-color: #ff5050;
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+          }
+          
+          /* Darker background on mouse-over */
+          .btn_hm:hover {
+            background-color: #ff3a3a;
+            color: rgb(255, 255, 255);
+          }
+          .btn_ft {
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+          }
+          
+          /* Darker background on mouse-over */
+          .btn_ft:hover {
+            background-color: #13aa52;
+            color: rgb(255, 255, 255);
+            border-radius: 4px;
+          }
+          .button-2{
+            background-color: transparent;
+            border: none;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            outline: none;
+            outline: 0;
+            padding: 10px 27px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 150ms, box-shadow 150ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            position:relative;
+          }
+          
+          .button-2:hover {
+            background-color: rgb(230, 230, 230);
+            color: rgb(0, 0, 0);
+            border: rgb(230, 230, 230);
+            border-radius: 4px;
+          }
+          
+          @media (min-width: 768px) {
+            .button-2 {
+              padding: 11px 20px;
+            }
         }
-        
-        a.nav-link:hover {
-          background-color: rgb(86, 173, 86); color: white;
-        }
-    
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'home' %}">Attendance Tracking System</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <br>
+                <img src="https://i.ibb.co/R3knSwW/Picture1.png" alt="Picture2-min" border="0" class="img-fluid" alt="ATS logo" width="47px" height="47px">
+                &nbsp; &nbsp; &nbsp; <br>
                 <li class="nav-item active">
-                    <a style = "background-color: #FF5050; color: white" class="nav-link" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
-                </li>
+                    <a href="{% url 'home' %}"><button class="btn_hm"> Home</button></a>
+                </li>&nbsp;<br>
                 <li class="nav-item">
-                    <a style="color: black;" class="nav-link" href="{% url 'view_attendance' %}">View Attendance</a>
-                </li>
+                    <a href="{% url 'view_attendance' %}"><button class="btn_ft">View Attendance</button></a>
+                </li>&nbsp;<br>
                 <li class="nav-item">
-                    <a style="color: black;" class="nav-link" href="{% url 'edit_attendance' %}">Edit Attendance</a>
-                </li>
+                    <a  href="{% url 'edit_attendance' %}"><button class="btn_ft">Edit Attendance</button></a>
+                </li>&nbsp;<br>
                 <li class="nav-item">
-                    <a style="color: black;" class="nav-link" href="{% url 'mark_attendance' %}">Take Attendance</a>
+                    <a href="{% url 'mark_attendance' %}"><button class="btn_ft"> Take Attendance</button></a>
+                </li>&nbsp;<br>
+                <li class="nav-item">
+                    <a href="{% url 'notification' %}"><button class="btn_ft"> Send Notification</button></a>
+                </li>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" style="text-decoration: none;"><button class="button-2" role="button"><span class="text">Sign out</span></button></a> 
+                    {% endif %}
                 </li>
             </ul>
         </div>

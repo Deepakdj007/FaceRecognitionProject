@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Attendance</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $("#table1 td").each(function() {
+        if ($(this).text() == 'A') {
+          $(this).css('background-color', "rgb(255, 67, 67)");}
+        if ($(this).text() == 'P') {
+          $(this).css('background-color', "#13aa52");}
+        if ($(this).text() == 'D') {
+          $(this).css('background-color', "#ffe135");  
+        }
+      });
+    });
+
+    </script>
+    <style>
+        .button-1{
+            background-color: rgb(29, 31, 39);
+            border: 1px solid rgb(29, 31, 39);
+            border-radius: 4px;
+            box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            outline: none;
+            outline: 0;
+            padding: 10px 25px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 150ms, box-shadow 150ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            position:relative;
+            left:40%;
+          }
+          
+          .button-1:hover {
+            box-shadow: rgba(0, 0, 0, 0.329) 0px 15px 30px -5px;
+            transform: translateY(-2px);
+          }
+          
+          @media (min-width: 768px) {
+            .button-1 {
+              padding: 8px 20px;
+            }
+        }
+        .gradient-custom {            
+          /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          background: #F2F2F2;
+          }
+          .table-condensed{
+            font-size: 15px;
+            border: 2px;
+            border-radius: 16px;
+            box-shadow: rgba(0, 0, 0, 0.76) 0px 15px 30px -5px;
+            text-align: center;
+          }
+    </style>
+</head>
+{% include 'base.html' %}
+
+{% block content %}
+<body class="vh-100 gradient-custom">
+  
+<div class="container">
+    <br><br>
+    <h2 style="color: rgb(14, 15, 19);" class="text-center">Attendance List</h2><br><br><br>            
+    <table class="table table-dark table-striped table-hover table-responsive table-bordered table-condensed" id="table1">
+      <thead>
+        <tr>
+          <th>RETID</th>
+          <th>Period 1</th>
+          <th>Period 2</th>
+          <th>Period 3</th>
+          <th>Period 4</th>
+          <th>Period 5</th>
+          <th>Period 6</th>
+          <th>Period 7</th>
+          <th>Present_hours</th>
+          <th>Duty_leaves</th>
+          <th>Absent_hours</th>
+        </tr>
+      </thead>
+      <tbody>
+      <!-- jinja2 Technique -->
+      {% if d3 %}  
+      {% for i in d3 %}
+        <tr>
+          <td>{{i.RETID}}</td>
+          <td contenteditable="true" class="edit" data-id="P1-{{ i.RETID }}" data-old_value="{{i.P1}}">{{i.P1}}</td>
+          <td contenteditable="true" class="edit" data-id="P2-{{ i.RETID }}" data-old_value="{{i.P2}}">{{i.P2}}</td>
+          <td contenteditable="true" class="edit" data-id="P3-{{ i.RETID }}" data-old_value="{{i.P3}}">{{i.P3}}</td>
+          <td contenteditable="true" class="edit" data-id="P4-{{ i.RETID }}" data-old_value="{{i.P4}}">{{i.P4}}</td>
+          <td contenteditable="true" class="edit" data-id="P5-{{ i.RETID }}" data-old_value="{{i.P5}}">{{i.P5}}</td>
+          <td contenteditable="true" class="edit" data-id="P6-{{ i.RETID }}" data-old_value="{{i.P6}}">{{i.P6}}</td>
+          <td contenteditable="true" class="edit" data-id="P7-{{ i.RETID }}" data-old_value="{{i.P7}}">{{i.P7}}</td>
+          <td contenteditable="true" class="edit" data-id="Present_hours-{{ i.RETID }}" data-old_value="{{i.Present_hours}}">{{i.Present_hours}}</td>
+          <td contenteditable="true" class="edit" data-id="Duty_leaves-{{ i.RETID }}" data-old_value="{{i.Duty_leaves}}">{{i.Duty_leaves}}</td>
+          <td contenteditable="true" class="edit" data-id="Absent_hours-{{ i.RETID }}" data-old_value="{{i.Absent_hours}}">{{i.Absent_hours}}</td>
+        </tr>
+      {% endfor %}
+      {% endif %}
+      </tbody>
+    </table><br>
+  </div>
+  </body>
+
+{% endblock %}
+</html>

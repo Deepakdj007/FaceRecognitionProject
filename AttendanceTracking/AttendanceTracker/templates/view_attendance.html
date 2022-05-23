@@ -4,25 +4,99 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Attendance</title>
+
+    <style>
+  
+      .bg-glass {
+        background-color: hsla(0, 0%, 100%, 0.9) !important;
+        backdrop-filter: saturate(200%) blur(25px);
+      }
+      input[type=submit]{
+        background-color: #13aa52;
+        border: 1px solid #13aa52;
+        border-radius: 4px;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        outline: none;
+        outline: 0;
+        padding: 10px 25px;
+        text-align: center;
+        transform: translateY(0);
+        transition: transform 150ms, box-shadow 150ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+      
+      input[type=submit]:hover {
+        box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+        transform: translateY(-2px);
+      }
+      
+      @media (min-width: 768px) {
+        input[type=submit] {
+          padding: 10px 30px;
+        }
+      }
+      .gradient-custom {            
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: #F2F2F2;
+      }
+       .box{
+
+        background-color:rgba(44, 47, 54, 0.974);
+        box-shadow: rgba(0, 0, 0, 0.76) 0px 15px 30px -5px;
+        width: 500px;
+        height: 280px;
+        border-radius: 16px;
+        
+        }
+    </style>
 </head>
-<body>
     {% extends 'base.html' %}
     {% block content %}
-    <h1>Enter Details</h1>
-    <form method="get" action="{% url 'Table' %}">
+    <body class="gradient-custom">
+    <section>
+      <br><br><br><br><br>
+      <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-5">
+          <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+            <h1 class="my-5 display-5 fw-bold ls-tight" style="color: rgba(44, 47, 54, 0.974)">Attendance Tracking System <br />
+            </h1>
+            <p class="mb-4 opacity-70" style="color: rgba(80, 85, 95, 0.974)">
+              Automated attendance tracking project by <br> Team 12 S8 CSE alpha, RSET Kakkanad
+            </p>
+          </div>
+              <div class="box">
+    <h2 style="color: rgb(255, 255, 255);"> <br> Enter Details</h2>
+    <br>
+    <form method="get" action="{% url 'view_table' %}">
 
-        <label for="date">Date</label>
+        <label style="color: rgb(255, 255, 255);" for="date">Date</label>
         <input type="date" id="class_date" name="class_date" placeholder = "yyyy-mm-dd" value="" min="1997-01-01">
 
-        <label for="class">Class</label>
+        <label style="color: rgb(255, 255, 255);" for="class">Class</label>
         <select id="class" name="class">
           <option value="S8CSEa">S8 CSE alpha</option>
           <option value="S8CSEb">S8 CSE beta</option>
           <option value="S8CSEc">S8 CSE gamma</option>
         </select>
-   
+        <div>
+        <br>
+        <br>
         <input type="submit" value="Submit">
+      </div>
       </form>
-      {% endblock %}
+    </div>
+  </div>
+</div>
+</div>
+</section>
 </body>
+      {% endblock %}
+
 </html>

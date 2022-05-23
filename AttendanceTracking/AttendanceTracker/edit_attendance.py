@@ -17,7 +17,7 @@ db = mc(uri, tlsCAFile = ca)['Final']
 null = {}
 coll = [db['class'], db['att']]
 
-def view_att(class_date,class_name):
+def view_today_att(class_date,class_name):
     d = class_date.split('-')
     d = [int(_) for _ in d]
     d = date(d[0], d[1], d[2]).strftime("%Y-%m-%d")
@@ -80,3 +80,8 @@ def view_att(class_date,class_name):
             df[j][i] = l[df[j][i]]
     """dfi.export(today, "Todays Attendance.png")"""
     return df
+
+    """writer = pd.ExcelWriter('Todays_Attendance.xlsx', engine='xlsxwriter')
+    today.to_excel(writer, sheet_name='Todays Attendance')"""
+def update_table(table):
+    print(table)

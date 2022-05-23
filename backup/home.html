@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    
+</head>
+
+    {% include 'base.html' %}
+
+    {% block content %}
+    <body  class="vh-100 gradient-custom">
+    <section>
+        <style>
+            .gradient-custom {            
+                /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))                }
+                .btn-login {
+                  font-size: 0.9rem;
+                  letter-spacing: 0.05rem;
+                  padding: 0.75rem 1rem;
+                }
+            .button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                border-radius: 8px;
+              }
+              .welcome
+              {
+                margin: 150px 100px;
+              }
+        </style>
+    {% if user.is_authenticated %}
+    <h1 class="welcome" style="color: white; font-family: Arial, Helvetica, sans-serif;font-size:50px">
+        <center>
+            Hi {{ user.username }}!
+        </center>
+        
+    </h1>
+    <p><a href="{% url 'logout' %}"><button class="button">Log Out</button></a></p>    
+    {% else %}
+        <a href="{% url 'login' %}"><button class="button">Log In</button></a>
+    {% endif %}
+
+    <h1 class="welcome" style="color: white; font-family: Arial, Helvetica, sans-serif;font-size:50px">
+        <center>
+            Welcome to automated attendance tracking system
+        </center>
+        
+    </h1>
+
+    {% endblock content %}
+
+</section>
+</body>
+</html>
