@@ -23,6 +23,7 @@
     });
 
     </script>
+    
     <style>
         .button-1{
             background-color: rgb(29, 31, 39);
@@ -101,16 +102,19 @@
       {% for i in d3 %}
         <tr>
           <td>{{i.RETID}}</td>
-          <td contenteditable="true" class="edit" data-id="P1-{{ i.RETID }}" data-old_value="{{i.P1}}">{{i.P1}}</td>
-          <td contenteditable="true" class="edit" data-id="P2-{{ i.RETID }}" data-old_value="{{i.P2}}">{{i.P2}}</td>
-          <td contenteditable="true" class="edit" data-id="P3-{{ i.RETID }}" data-old_value="{{i.P3}}">{{i.P3}}</td>
-          <td contenteditable="true" class="edit" data-id="P4-{{ i.RETID }}" data-old_value="{{i.P4}}">{{i.P4}}</td>
-          <td contenteditable="true" class="edit" data-id="P5-{{ i.RETID }}" data-old_value="{{i.P5}}">{{i.P5}}</td>
-          <td contenteditable="true" class="edit" data-id="P6-{{ i.RETID }}" data-old_value="{{i.P6}}">{{i.P6}}</td>
-          <td contenteditable="true" class="edit" data-id="P7-{{ i.RETID }}" data-old_value="{{i.P7}}">{{i.P7}}</td>
-          <td contenteditable="true" class="edit" data-id="Present_hours-{{ i.RETID }}" data-old_value="{{i.Present_hours}}">{{i.Present_hours}}</td>
-          <td contenteditable="true" class="edit" data-id="Duty_leaves-{{ i.RETID }}" data-old_value="{{i.Duty_leaves}}">{{i.Duty_leaves}}</td>
-          <td contenteditable="true" class="edit" data-id="Absent_hours-{{ i.RETID }}" data-old_value="{{i.Absent_hours}}">{{i.Absent_hours}}</td>
+          <td contenteditable="true" class="edit" data-id="P1-{{ i.RETID }}" data-old_value="{{i.P1}}" onClick="highlightEdit(this);">{{i.P1}}</td>
+          <td contenteditable="true" class="edit" data-id="P2-{{ i.RETID }}" data-old_value="{{i.P2}}" onClick="highlightEdit(this);">{{i.P2}}</td>
+          <td contenteditable="true" class="edit" data-id="P3-{{ i.RETID }}" data-old_value="{{i.P3}}" onClick="highlightEdit(this);">{{i.P3}}</td>
+          <td contenteditable="true" class="edit" data-id="P4-{{ i.RETID }}" data-old_value="{{i.P4}}" onClick="highlightEdit(this);">{{i.P4}}</td>
+          <td contenteditable="true" class="edit" data-id="P5-{{ i.RETID }}" data-old_value="{{i.P5}}" onClick="highlightEdit(this);">{{i.P5}}</td>
+          <td contenteditable="true" class="edit" data-id="P6-{{ i.RETID }}" data-old_value="{{i.P6}}" onClick="highlightEdit(this);">{{i.P6}}</td>
+          <td contenteditable="true" class="edit" data-id="P7-{{ i.RETID }}" data-old_value="{{i.P7}}" onClick="highlightEdit(this);">{{i.P7}}</td>
+          <td class="edit" data-id="Present_hours-{{ i.RETID }}" data-old_value="{{i.Present_hours}}">{{i.Present_hours}}</td>
+          <td class="edit" data-id="Duty_leaves-{{ i.RETID }}" data-old_value="{{i.Duty_leaves}}">{{i.Duty_leaves}}</td>
+          <td class="edit" data-id="Absent_hours-{{ i.RETID }}" data-old_value="{{i.Absent_hours}}">{{i.Absent_hours}}</td>
+          <td>
+            <center><a onclick="save(event,'{{i.RETID}}')">Save your edit --- </a><a href="{% url 'return_edit_table'%}">Delete</a></center>
+          </td>
         </tr>
       {% endfor %}
       {% endif %}
@@ -118,6 +122,60 @@
     </table><br>
   </div>
   </body>
+  <script>
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 
+  function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+
+  $.ajaxSetup({
+      beforeSend: function (xhr, settings) {
+          // if not safe, set csrftoken
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+      }
+  });
+    function save(e,id) {
+        e.preventDefault();
+        P1 = $('a[data-id=P1-'+id+']')
+        P2 = $('a[data-id=P2-'+id+']') 
+        P3 = $('a[data-id=P3-'+id+']') 
+        P4 = $('a[data-id=P4-'+id+']') 
+        P5 = $('a[data-id=P5-'+id+']') 
+        P6 = $('a[data-id=P6-'+id+']') 
+        P7 = $('a[data-id=P7-'+id+']')  //this will get data-id=question-1 where 1 is the question ID
+
+        // no change change made then return false
+        var json_data = {'P1': P1.html(),'P2': P2.html(),'P3': P3.html(),'P4': P4.html(),'P5': P5.html(),'P6': P6.html(),'P7': P7.html()}
+        // send ajax to update value
+        $.ajax({
+            url: "/return_edit_table/",
+            type: 'GET',
+            dataType: "json",
+            data: JSON.stringify(json_data),
+            success: function(response) {
+                // set updated value as old value
+                $(P1).attr('data-old_value', response.question);
+                $(P2).attr('data-old_value', response.question);
+                $(P3).attr('data-old_value', response.question);
+                $(P4).attr('data-old_value', response.question);
+                $(P5).attr('data-old_value', response.question);
+                $(P6).attr('data-old_value', response.question);
+                $(P7).attr('data-old_value', response.question);
+            },
+            error: function() {
+                console.log("errr");
+                alert("An error occurred")
+            }
+        });
+    }
+
+    function highlightEdit(elem){
+      $(elem).css("background", "#e3e3e3") //just add any css or anything, it's only to depict that this area is being edited...
+    }
+    </script>
 {% endblock %}
 </html>

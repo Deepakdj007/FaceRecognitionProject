@@ -82,11 +82,12 @@ def edit_table(request):
 
 @login_required 
 def return_edit_table(request):
-    id=request.POST.get('id','')
-    type=request.POST.get('type','')
-    value=request.POST.get('value','')
-    edit_attendance.update_table(id)
-    return HttpResponse("Success!") # Sending an success response
+    print(request.method)
+    if request.method == 'GET':
+        data = request.GET.get('json_data')
+        data_dict = json.loads(data)
+        edit_attendance.update_table(type(data_dict))
+        return HttpResponse("Success!") # Sending an success response
 
     
     
