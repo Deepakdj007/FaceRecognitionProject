@@ -6,23 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Attendance</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    $(function() {
-      $("#table1 td").each(function() {
-        if ($(this).text() == 'A') {
-          $(this).css('background-color', "rgb(255, 67, 67)");}
-        if ($(this).text() == 'P') {
-          $(this).css('background-color', "#13aa52");}
-        if ($(this).text() == 'D') {
-          $(this).css('background-color', "#ffe135");  
-        }
-      });
-    });
-
-    </script>
     <style>
       .gradient-custom {            
         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -35,41 +18,7 @@
           box-shadow: rgba(0, 0, 0, 0.76) 0px 15px 30px -5px;
           text-align: center;
         }
-      .button-1{
-        background-color: rgb(29, 31, 39);
-        border: 1px solid rgb(29, 31, 39);
-        border-radius: 4px;
-        box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
-        box-sizing: border-box;
-        color: #fff;
-        cursor: pointer;
-        font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        outline: none;
-        outline: 0;
-        padding: 10px 25px;
-        text-align: center;
-        transform: translateY(0);
-        transition: transform 150ms, box-shadow 150ms;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        position:relative;
-        left:40%;
-      }
-      
-      .button-1:hover {
-        box-shadow: rgba(0, 0, 0, 0.329) 0px 15px 30px -5px;
-        transform: translateY(-2px);
-      }
-      
-      @media (min-width: 768px) {
-        .button-1 {
-          padding: 8px 20px;
-        }
-    }
-      .button-3{
+      .use-address{
         background-color: rgb(230, 230, 230);
         border: 1px solid rgb(230, 230, 230);
         border-radius: 4px;
@@ -92,7 +41,7 @@
         position:relative;
       }
       
-      .button-3:hover {
+      .use-address:hover {
         box-shadow: rgba(0, 0, 0, 0.329) 0px 15px 30px -5px;
         transform: translateY(-2px);
         background-color: #13aa52;
@@ -101,7 +50,7 @@
       }
       
       @media (min-width: 768px) {
-        .button-3 {
+        .use-address {
           padding: 8px 20px;
         }
     }
@@ -137,22 +86,22 @@
       <!-- jinja2 Technique -->
       {% if d3 %}  
       {% for i in d3 %}
-        <tr id="1">
+        <tr>
           <td>{{i.RETID}}</td>
-          <td contenteditable="true" class="edit" data-id="P1-{{ i.RETID }}" data-old_value="{{i.P1}}" onClick="highlightEdit(this);">{{i.P1}}</td>
-          <td contenteditable="true" class="edit" data-id="P2-{{ i.RETID }}" data-old_value="{{i.P2}}" onClick="highlightEdit(this);">{{i.P2}}</td>
-          <td contenteditable="true" class="edit" data-id="P3-{{ i.RETID }}" data-old_value="{{i.P3}}" onClick="highlightEdit(this);">{{i.P3}}</td>
-          <td contenteditable="true" class="edit" data-id="P4-{{ i.RETID }}" data-old_value="{{i.P4}}" onClick="highlightEdit(this);">{{i.P4}}</td>
-          <td contenteditable="true" class="edit" data-id="P5-{{ i.RETID }}" data-old_value="{{i.P5}}" onClick="highlightEdit(this);">{{i.P5}}</td>
-          <td contenteditable="true" class="edit" data-id="P6-{{ i.RETID }}" data-old_value="{{i.P6}}" onClick="highlightEdit(this);">{{i.P6}}</td>
-          <td contenteditable="true" class="edit" data-id="P7-{{ i.RETID }}" data-old_value="{{i.P7}}" onClick="highlightEdit(this);">{{i.P7}}</td>
-          <td class="edit" data-id="Present_hours-{{ i.RETID }}" data-old_value="{{i.Present_hours}}">{{i.Present_hours}}</td>
-          <td class="edit" data-id="Duty_leaves-{{ i.RETID }}" data-old_value="{{i.Duty_leaves}}">{{i.Duty_leaves}}</td>
-          <td class="edit" data-id="Absent_hours-{{ i.RETID }}" data-old_value="{{i.Absent_hours}}">{{i.Absent_hours}}</td>
+          <td contenteditable="true">{{i.P1}}</td>
+          <td contenteditable="true">{{i.P2}}</td>
+          <td contenteditable="true">{{i.P3}}</td>
+          <td contenteditable="true">{{i.P4}}</td>
+          <td contenteditable="true">{{i.P5}}</td>
+          <td contenteditable="true">{{i.P6}}</td>
+          <td contenteditable="true">{{i.P7}}</td>
+          <td >{{i.Present_hours}}</td>
+          <td>{{i.Duty_leaves}}</td>
+          <td>{{i.Absent_hours}}</td>
           <td>
-            <center><input class="button-3" type="button" 
+            <center><input type="button" 
               value="submit" 
-              onclick="show()" /></center>
+              class="use-address" /></center>
           </td>
         </tr>
       {% endfor %}
@@ -161,36 +110,49 @@
     </table><br>
   </div>
   </body>
-  <script>
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-  function csrfSafeMethod(method) {
-      // these HTTP methods do not require CSRF protection
-      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-  }
-
-  $.ajaxSetup({
-      beforeSend: function (xhr, settings) {
-          // if not safe, set csrftoken
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-              xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
+<script type="text/javascript">
+  $(function() {
+    $("#table1 td").each(function() {
+      if ($(this).text() == 'A') {
+        $(this).css('background-color', "rgb(255, 67, 67)");}
+      if ($(this).text() == 'P') {
+        $(this).css('background-color', "#13aa52");}
+      if ($(this).text() == 'D') {
+        $(this).css('background-color', "#ffe135");  
       }
+    });
   });
-  function show() {
-    var rowId = 
-        event.target.parentNode.parentNode.id;
-  //this gives id of tr whose button was clicked
-    var data = 
-    document.getElementById(rowId).querySelectorAll(".edit"); 
-  /*returns array of all elements with 
-  "row-data" class within the row with given id*/
 
-    var name = data[0].innerHTML;
-    var age = data[1].innerHTML;
-
-    alert("Name: " + name + "\nAge: " + age);
-    }
-    </script>
+  </script>
+  <script>
+    var data1 = [];
+    $(".use-address").click(function() {
+      var $row = $(this).closest("tr"),       // Finds the closest row <tr> 
+        $tds = $row.find("td");             // Finds all children <td> elements
+    
+    $.each($tds, function() {               // Visits every single <td> element
+        data1.push($(this).text());      // Prints out the text within the <td>
+    });
+    edit(data1); 
+    data1 = [];       // Outputs the answer
+  });
+  function edit(data1){
+    console.log(data1)
+    $.ajax({
+      type: "POST",
+      url: "{% url 'return_edit_table' %}",
+      data: {"data1":data1,
+      csrfmiddlewaretoken:'{{csrf_token}}'},
+      success: function () {                    
+        alert("Succesfully Updated:"+data1[0]);
+     },
+    });
+  }
+  </script>
 {% endblock %}
 </html>

@@ -44,6 +44,10 @@
           <option value="7">period 7</option>
         </select>
       </div>
+      <div>
+        <span class="label" style="color: white;">Choose Image</span>
+        <input style="color: white;" type="file" class="image-upload" name="image_upld" id="image_upload" onchange="loadFile(event)">
+      </div>
         <br>
         <br>
         <input type="submit" value="Submit">
@@ -55,4 +59,10 @@
 </section>
       {% endblock %}
 </body>
+<script>
+  var loadFile = function(event) {
+    var image = document.getElementById('image_upload');
+    image.src = URL.createObjectURL(event.target.files[0]);
+  };
+  </script>
 </html>

@@ -84,4 +84,4 @@ def view_today_att(class_date,class_name):
     """writer = pd.ExcelWriter('Todays_Attendance.xlsx', engine='xlsxwriter')
     today.to_excel(writer, sheet_name='Todays Attendance')"""
 def update_table(table):
-    print("succes",table)
+    print(table[:-1])

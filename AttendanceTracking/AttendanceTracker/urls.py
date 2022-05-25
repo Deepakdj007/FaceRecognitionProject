@@ -25,6 +25,6 @@ path('Attendance/students_to_notify', views.send_notification,
 path('Attendance/edit', views.edit_attendance_page, 
      name='edit_attendance'),
 path('Attendance/edit_table',views.edit_table , name='edit_table'),
-path('Attendance/return_edit_table',views.return_edit_table , name='return_edit_table'),
+path('Attendance/return_edited_values',views.return_edit_table , name='return_edit_table'),
 ]
 
