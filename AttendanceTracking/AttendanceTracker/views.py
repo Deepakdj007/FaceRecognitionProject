@@ -84,9 +84,8 @@ def edit_table(request):
 def return_edit_table(request):
     print(request.method)
     if request.method == 'GET':
-        data = request.GET.get('json_data')
-        data_dict = json.loads(data)
-        edit_attendance.update_table(type(data_dict))
+        data = request.GET.get('P1')
+        edit_attendance.update_table(type(data))
         return HttpResponse("Success!") # Sending an success response
 
     
