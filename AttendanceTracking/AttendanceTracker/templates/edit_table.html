@@ -23,6 +23,89 @@
     });
 
     </script>
+    <style>
+      .gradient-custom {            
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: #F2F2F2;
+        }
+        .table-condensed{
+          font-size: 15px;
+          border: 2px;
+          border-radius: 16px;
+          box-shadow: rgba(0, 0, 0, 0.76) 0px 15px 30px -5px;
+          text-align: center;
+        }
+      .button-1{
+        background-color: rgb(29, 31, 39);
+        border: 1px solid rgb(29, 31, 39);
+        border-radius: 4px;
+        box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        outline: none;
+        outline: 0;
+        padding: 10px 25px;
+        text-align: center;
+        transform: translateY(0);
+        transition: transform 150ms, box-shadow 150ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        position:relative;
+        left:40%;
+      }
+      
+      .button-1:hover {
+        box-shadow: rgba(0, 0, 0, 0.329) 0px 15px 30px -5px;
+        transform: translateY(-2px);
+      }
+      
+      @media (min-width: 768px) {
+        .button-1 {
+          padding: 8px 20px;
+        }
+    }
+      .button-3{
+        background-color: rgb(230, 230, 230);
+        border: 1px solid rgb(230, 230, 230);
+        border-radius: 4px;
+        box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+        box-sizing: border-box;
+        color: rgb(0, 0, 0);
+        cursor: pointer;
+        font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        outline: none;
+        outline: 0;
+        padding: 10px 25px;
+        text-align: center;
+        transform: translateY(0);
+        transition: transform 150ms, box-shadow 150ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        position:relative;
+      }
+      
+      .button-3:hover {
+        box-shadow: rgba(0, 0, 0, 0.329) 0px 15px 30px -5px;
+        transform: translateY(-2px);
+        background-color: #13aa52;
+        border: 1px solid #13aa52;
+        color: white;
+      }
+      
+      @media (min-width: 768px) {
+        .button-3 {
+          padding: 8px 20px;
+        }
+    }
+    </style>
     
 </head>
 {% include 'base.html' %}
@@ -47,13 +130,14 @@
           <th>Present_hours</th>
           <th>Duty_leaves</th>
           <th>Absent_hours</th>
+          <th>Submit</th>
         </tr>
       </thead>
       <tbody>
       <!-- jinja2 Technique -->
       {% if d3 %}  
       {% for i in d3 %}
-        <tr>
+        <tr id="1">
           <td>{{i.RETID}}</td>
           <td contenteditable="true" class="edit" data-id="P1-{{ i.RETID }}" data-old_value="{{i.P1}}" onClick="highlightEdit(this);">{{i.P1}}</td>
           <td contenteditable="true" class="edit" data-id="P2-{{ i.RETID }}" data-old_value="{{i.P2}}" onClick="highlightEdit(this);">{{i.P2}}</td>
@@ -66,7 +150,9 @@
           <td class="edit" data-id="Duty_leaves-{{ i.RETID }}" data-old_value="{{i.Duty_leaves}}">{{i.Duty_leaves}}</td>
           <td class="edit" data-id="Absent_hours-{{ i.RETID }}" data-old_value="{{i.Absent_hours}}">{{i.Absent_hours}}</td>
           <td>
-            <center><a onclick="save(event,'{{i.RETID}}')">Save your edit --- </a><a href="{% url 'return_edit_table'%}">Delete</a></center>
+            <center><input class="button-3" type="button" 
+              value="submit" 
+              onclick="show()" /></center>
           </td>
         </tr>
       {% endfor %}
@@ -91,43 +177,19 @@
           }
       }
   });
-    function save(e,id) {
-        e.preventDefault();
-        P1 = $('a[data-id=P1-'+id+']')
-        P2 = $('a[data-id=P2-'+id+']') 
-        P3 = $('a[data-id=P3-'+id+']') 
-        P4 = $('a[data-id=P4-'+id+']') 
-        P5 = $('a[data-id=P5-'+id+']') 
-        P6 = $('a[data-id=P6-'+id+']') 
-        P7 = $('a[data-id=P7-'+id+']')  //this will get data-id=question-1 where 1 is the question ID
+  function show() {
+    var rowId = 
+        event.target.parentNode.parentNode.id;
+  //this gives id of tr whose button was clicked
+    var data = 
+    document.getElementById(rowId).querySelectorAll(".edit"); 
+  /*returns array of all elements with 
+  "row-data" class within the row with given id*/
 
-        // no change change made then return false
-        var json_data = {'P1': P1.html(),'P2': P2.html(),'P3': P3.html(),'P4': P4.html(),'P5': P5.html(),'P6': P6.html(),'P7': P7.html()}
-        // send ajax to update value
-        $.ajax({
-            url: "/return_edit_table/",
-            type: 'GET',
-            dataType: "json",
-            data: JSON.stringify(json_data),
-            success: function(response) {
-                // set updated value as old value
-                $(P1).attr('data-old_value', response.question);
-                $(P2).attr('data-old_value', response.question);
-                $(P3).attr('data-old_value', response.question);
-                $(P4).attr('data-old_value', response.question);
-                $(P5).attr('data-old_value', response.question);
-                $(P6).attr('data-old_value', response.question);
-                $(P7).attr('data-old_value', response.question);
-            },
-            error: function() {
-                console.log("errr");
-                alert("An error occurred")
-            }
-        });
-    }
+    var name = data[0].innerHTML;
+    var age = data[1].innerHTML;
 
-    function highlightEdit(elem){
-      $(elem).css("background", "#e3e3e3") //just add any css or anything, it's only to depict that this area is being edited...
+    alert("Name: " + name + "\nAge: " + age);
     }
     </script>
 {% endblock %}
