@@ -35,12 +35,12 @@ def mark_attendance_page(request):
 @login_required    
 def attendance_marked(request):
     
-    if request.method == "GET":
-        class_name = request.GET['class']
-        period = request.GET['hour']
-        face_rec_take_attendance.main(class_name, int(period))
-        
-    return render(request, 'attendance_marked.html',{})
+    if request.POST.get('action') == 'create-post':
+            class_name = request.POST.get('class')
+            period = request.POST.get('hour')
+            image = request.FILES.get('image') # request.FILES used for to get files
+            face_rec_take_attendance.main(class_name, int(period),image)
+    return render(request, 'attendance_marked.html')
 
 @login_required
 def send_notification(request):
@@ -57,9 +57,9 @@ def send_notification(request):
 
 @login_required
 def notified(request):
-    if request.method == 'POST' and 'run_mail' in request.POST:
+    if request.method == 'GET' and 'run_mail' in request.GET:
         smtp_email.notify_people(request.session.get('Class_name'))
-    if request.method == 'POST' and 'run_whatsapp' in request.POST:
+    if request.method == 'GET' and 'run_whatsapp' in request.GET:
         whatsapp.whatsapp_message(request.session.get('Class_name'))
     
     return render(request, 'notified.html',{})

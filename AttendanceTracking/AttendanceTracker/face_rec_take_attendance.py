@@ -78,7 +78,7 @@ def take_attendance(test, C, P):
     """
     
 
-def main(class_name,period):
+def main(class_name,period,image):
     #-------------------------------
     """    
     C = input("Enter class (S[semester][branch][a/b/c]): ")
@@ -86,8 +86,10 @@ def main(class_name,period):
     """
     mark_attendance.validate(class_name, period)
     #-------------------------------
+    """    
     Tk().withdraw()
-    test_image = askopenfilename()
+    test_image = askopenfilename()"""
+    test_image = image
     take_attendance(test_image, class_name, period)
     print("Attendnance marked.")
   
