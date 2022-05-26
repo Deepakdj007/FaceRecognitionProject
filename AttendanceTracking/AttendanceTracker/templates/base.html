@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://app.staticsave.com/atsfacereccss/base.css">
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
+    {% load static %}
+    <link rel="icon"href="{% static 'favicon.ico' %}">
 </head>
 
 <body>
@@ -41,13 +43,13 @@
                 <li class="nav-item">
                     <a href="{% url 'notification' %}"><button class="btn_ft"> Send Notification</button></a>
                 </li>
-                <li>
-                    
-                </li>
             </ul>
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
+                <li>
+                    <a href="{% url 'about_us' %}"><button class="btn_ft"> About Us</button></a>
+                </li>
                 <li class="nav-item">
                     {% if user.is_authenticated %}
                     <a href="{% url 'logout' %}" style="text-decoration: none;"><button class="button-2" role="button"><span class="text">Sign out</span></button></a> 

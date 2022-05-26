@@ -92,6 +92,10 @@ def return_edit_table(request):
         edit_attendance.update_table(data,class_name,class_date)
     return HttpResponse("Success!") # Sending an success response
 
+@login_required 
+def about_us(request):
+    return render(request, 'about.html',{})
+
     
 
     
