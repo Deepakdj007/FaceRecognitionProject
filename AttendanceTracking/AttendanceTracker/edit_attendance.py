@@ -83,5 +83,31 @@ def view_today_att(class_date,class_name):
 
     """writer = pd.ExcelWriter('Todays_Attendance.xlsx', engine='xlsxwriter')
     today.to_excel(writer, sheet_name='Todays Attendance')"""
-def update_table(table):
+def update_table(table, class_name,class_date):
+    ret_id = table[0]
+    attendance_marked = table[1:8]
+    for i in range(len(attendance_marked)):
+        if attendance_marked[i] == "":
+            attendance_marked[i] = 0
+        if attendance_marked[i] == "A":
+            attendance_marked[i] = 1
+        if attendance_marked[i] == "D":
+            attendance_marked[i] = 2
+        if attendance_marked[i] == "P":
+            attendance_marked[i] = 3
+    
     print(table[:-1])
+    print(attendance_marked)
+    for i in range(len(attendance_marked)):
+        p = i+1
+        find = {
+            'RETID': ret_id
+        }
+
+        update = {
+            '$set': {
+                f'{class_date}.P{p}': attendance_marked[i]
+            }
+        }
+
+        coll[1].update_one(find, update)

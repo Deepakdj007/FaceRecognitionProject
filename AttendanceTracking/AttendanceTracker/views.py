@@ -73,6 +73,9 @@ def edit_table(request):
     if request.method == "GET":
         class_date = request.GET.get('class_date')
         class_name = request.GET.get('class')
+    request.session['class_name'] = class_name
+    request.session['class_date'] = class_date
+
     df = edit_attendance.view_today_att(class_date, class_name)
     json_records3 = df.reset_index().to_json(orient ='records')
     data3 = []
@@ -84,8 +87,10 @@ def edit_table(request):
 def return_edit_table(request):
     if request.method == 'POST':
         data = request.POST.getlist('data1[]')
-        edit_attendance.update_table(data)
-        return HttpResponse("Success!") # Sending an success response
+        class_name = request.session['class_name']
+        class_date = request.session['class_date']
+        edit_attendance.update_table(data,class_name,class_date)
+    return HttpResponse("Success!") # Sending an success response
 
     
 
