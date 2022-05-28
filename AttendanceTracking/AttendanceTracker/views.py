@@ -1,5 +1,13 @@
-from django.shortcuts import render
-from django.shortcuts import HttpResponse
+from django.shortcuts import render,redirect
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.models import User
+from django.template.loader import render_to_string
+from django.db.models.query_utils import Q
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
 from matplotlib.style import context
 import pandas as pd
 from . import view_attendance, face_rec_take_attendance, smtp_email, low_attendance_list, whatsapp, edit_attendance
@@ -92,11 +100,7 @@ def return_edit_table(request):
         edit_attendance.update_table(data,class_name,class_date)
     return HttpResponse("Success!") # Sending an success response
 
-@login_required 
-def about_us(request):
-    return render(request, 'about.html',{})
 
-    
 
     
     

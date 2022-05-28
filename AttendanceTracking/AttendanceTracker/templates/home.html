@@ -4,108 +4,280 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>ATS Home</title>
+    <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css"
+  rel="stylesheet">
     <style>
-        .gradient-custom {            
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            background: #F2F2F2; 
-            }
-
-            /* CSS */
-            .button-64 {
-            align-items: center;
-            background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-            border: 0;
-            border-radius: 8px;
-            box-shadow: rgba(152, 65, 252, 0.247) 0px 15px 30px -5px;
-            box-sizing: border-box;
-            color: #FFFFFF;
+        .social-link {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
             display: flex;
-            font-family: Phantomsans, sans-serif;
-            font-size: 20px;
+            align-items: center;
             justify-content: center;
-            line-height: 1em;
-            max-width: 100%;
-            min-width: 140px;
-            padding: 3px;
+            color: rgb(26, 93, 236);
+            border-radius: 50%;
+            transition: all 0.3s;
+            font-size: 0.9rem;
             text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            white-space: nowrap;
-            cursor: pointer;
-            width:200px;
-            position: relative;
-            left: 125px;
-            }
+          }
+          
+          .social-link:hover,
+          .social-link:focus {
+            background: #ddd;
+            text-decoration: none;
+            color: rgb(26, 93, 236);
+          }
 
-            .button-64:active,
-            .button-64:hover {
-            outline: 0;
-            }
+    
+          /* Height for devices larger than 576px */
 
-            .button-64 span {
-            background-color: rgb(5, 6, 45);
-            padding: 16px 24px;
-            border-radius: 6px;
-            width: 100%;
-            height: 100%;
-            transition: 300ms;
-            }
-
-            .button-64:hover span {
-            background: none;
-            }
-
-            @media (min-width: 768px) {
-            .button-64 {
-                font-size: 24px;
-                min-width: 196px;
-            }
-            }
     </style>
 </head>
-
-{% include 'base.html' %}
-
+{% extends 'base.html' %}
 {% block content %}
-<section class="vh-100">
-    <div class="container py-5 h-100">
-        <div class="row d-flex align-items-center justify-content-center h-100">
-          <div class="col-md-8 col-lg-7 col-xl-6">
-            <img src="https://i.ibb.co/XyBd55T/Picture4.png" alt="Picture2-min" border="0" class="img-fluid" alt="ATS logo" width="95%" height="95%">
-          </div>
-          <br><br><br><br>
-          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-
+<body>
+      <!--background-->
+      <header>
+        <style>
+          #intro {
+            background-image: url("https://i.ibb.co/yRcckLx/2y-kang-d-Fohf-GUZJ0-unsplash.jpg");
+            height: 100vh;
+          }
+    
+          .navbar .nav-link {
+            color: #fff !important;
+          }
+        </style>
+        <div id="intro" class="bg-image shadow-2-strong">
+          <div class="mask" style="background-color: rgba(0, 0, 0, 0.8);">
+            <div class="container d-flex align-items-center justify-content-center text-center h-100">
+              <div class="text-white">
+                <img src="https://i.ibb.co/R3knSwW/Picture1.png" alt="Picture2-min" border="0" class="img-fluid" alt="ATS logo" width="287px" height="287px"><br><br>
                 {% if user.is_authenticated %}
-                <h1 class="welcome" style="color: rgb(20,20,20); font-family:  Impact;">
-                    <center>
-                        Hi {{ user.username }}!
-                    </center>                  
-                </h1>
-                <h1 class="welcome" style="color: rgb(20, 20, 20); font-family: Impact;">
-                    <center>
-                        Welcome to automated attendance tracking system
-                    </center>
-                </h1>
+                <h1 class="mb-3">Welcome To<br>Attendance Tracking System</h1><br>
+                <h6 class="mb-4">Automated attendance tracking system using face recognition. <br>By Team 07 S8 CSE alpha, RSET Kakkanad</h6>
                 {% else %}
-                <h1 class="welcome" style="color: rgb(20,20,20); font-family:Impact">
-                    <center>
-                        Welcome to automated attendance tracking system
-                    </center>
-                </h1>
-                <br><br><br><br>
-                    <a href="{% url 'login' %}" style="text-decoration: none;"><button class="button-64" role="button"><span class="text">Get Started</span></button></a>
+                <h1 class="mb-3">Welcome To<br>Attendance Tracking System</h1><br>
+                <h6 class="mb-4">Automated attendance tracking system using face recognition. <br>By Team 07 S8 CSE alpha, RSET Kakkanad</h6>
+                <a class="btn btn-outline-light btn-lg m-2" href="{% url 'login' %}" role="button"
+                  rel="nofollow">Get Started</a>
                 {% endif %}
-                    
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Background image -->
+      </header>
 
-            </form>
+      <!--cards-->
+     <div class="bg-white py-5">
+        <div class="col-lg-6"><h1 class="display-4"><center>Features</center></h1></div>
+        <section class="text-center">
+        <div class="container py-5">
+          <div class="card-deck-wrapper">
+            <div class="card-deck">
+              <div class="card" style="width: 18rem;">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                  <img src="https://i.ibb.co/rbQkM7S/Slide2.png" class="img-fluid" />
+                  <a href="{% url 'mark_attendance' %}">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Take Attendance</h5>
+                  <p class="card-text">Take attendance of students from image using Face Recognition.</p>
+                  <a href="{% url 'mark_attendance' %}" class="btn btn-primary stretched-link">Start</a>
+                </div>
+              </div>
+
+              <div class="card" style="width: 18rem;">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                  <img src="https://i.ibb.co/7gZKMXV/Slide3.png" class="img-fluid" />
+                  <a href="{% url 'view_attendance' %}">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">View Attendance</h5>
+                  <p class="card-text">View attendance of a particular day by selecting the date and the class name.</p>
+                  <a href="{% url 'view_attendance' %}" class="btn btn-primary stretched-link">Start</a>
+                </div>
+              </div>
+
+              <div class="card" style="width: 18rem;">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                  <img src="https://i.ibb.co/st6h7Sf/Slide4.png" class="img-fluid" />
+                  <a href="{% url 'edit_attendance' %}">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Edit Attendance</h5>
+                  <p class="card-text">Edit the attendance of a particular day by selecting the date and the class name</p>
+                  <a href="{% url 'edit_attendance' %}" class="btn btn-primary stretched-link">Start</a>
+                </div>
+              </div>
+
+              <div class="card" style="width: 18rem;">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                  <img src="https://i.ibb.co/JztJZf8/Slide5.png" class="img-fluid" />
+                  <a href="{% url 'notification' %}">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Send Notification</h5>
+                  <p class="card-text">Send notification to students with below 75% attendance.</p>
+                  <a href="{% url 'notification' %}" class="btn btn-primary stretched-link">Start</a>
+                </div>
+              </div>
+
+              <div class="card" style="width: 18rem;">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                  <img src="https://i.ibb.co/FYzh1TB/Slide6.png" class="img-fluid" />
+                  <a href="{% url 'notification' %}">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Generate Report</h5>
+                  <p class="card-text">Generate Attendance report of a particular day by selecting the class.</p>
+                  <a href="" class="btn btn-primary stretched-link">Start</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
+     <div class="bg-light">
+        <div class="container py-5">
+          <div class="row h-100 align-items-center py-5">
+            <div class="col-lg-6">
+              <h1 class="display-4">About us</h1>
+              <p class="lead text-muted mb-0"  >Automated attendance tracking project by Team 07 S8 CSE alpha, RSET Kakkanad. </p> <br><br><p class="font-italic text-muted mb-4">
+                  One of the most perplexing problems faced by modern schools and 
+                  colleges today concerns the matter of taking attendance. Due to the amount of time and effort it takes to
+                maintain the attendance of a class, a majority of teachers nowadays are very much tired
+                of the present system of calling out student names before class to take the attendance. 
+                <br><br>
+                The present system wastes so much valuable time and effort of the teachers that could
+                well be used for something more productive. Thus, we felt a need to seek for a solution
+                for this problem. <br><br> We propose an effective, accurate and automated attendance tracking system
+                that uses computer vision facial recognition algorithms that
+                could track, mark and review attendance within seconds.</p>
+              <p class="lead text-muted"><a href="#" class="text-muted"> 
+                          <br> <u>Know more about us. </u></a>
+              </p>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png" alt="" class="img-fluid"></div>
+          </div>
         </div>
       </div>
-    </div>
-    
-    {% endblock content %}
-</section>
+      
+      <div class="bg-white py-5">
+        <div class="container py-5">
+          <div class="row align-items-center mb-5">
+            <div class="col-lg-6 order-2 order-lg-1"><i class="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
+              <h2 class="font-weight-light">Our Objective</h2>
+              <p class="font-italic text-muted mb-4">The prime objective of our project is to develop an attendance tracker that uses a
+                computer vision model to recognize students from images. It is aimed for an academic
+                environment where faculties find it difficult to take attendance manually. It is designed
+                to be quick, accurate, reliable and to automate almost all the administrative tasks that
+                are related to taking attendance and dealing with reports.</p><a href="#" class="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
+            </div>
+            <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img src="https://bootstrapious.com/i/snippets/sn-about/img-1.jpg" alt="" class="img-fluid mb-4 mb-lg-0"></div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-lg-5 px-5 mx-auto"><img src="https://bootstrapious.com/i/snippets/sn-about/img-2.jpg" alt="" class="img-fluid mb-4 mb-lg-0"></div>
+            <div class="col-lg-6"><i class="fa fa-leaf fa-2x mb-3 text-primary"></i>
+              <h2 class="font-weight-light">What do we offer?</h2>
+              <p class="font-italic text-muted mb-4">The features that we provide include options to take attendance, view attendance, 
+                  edit attendance, send notifications to students with an attendance percentage of under 75, and generate reports.</p><a href="#" class="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-light py-5">
+        <div class="container py-5">
+          <div class="row mb-4">
+            <div class="col-lg-5">
+              <h2 class="display-4 font-weight-light">Our team</h2>
+              <p class="font-italic text-muted">S8 CSE Students from Rajagiri School Of Engineering and Technology.</p>
+            </div>
+          </div>
+      
+          <div class="row text-center">
+            <!-- Team item-->
+
+            <div class="col-xl-3 col-sm-6 mb-5">
+              <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/q1XhszN/Deepak-Jose-copy.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">Deepak Jose</h5><span class="small text-uppercase text-muted">Chief executive officer</span>
+                <ul class="social mb-0 list-inline mt-3">
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                  <li class="list-inline-item"><a href="https://www.instagram.com/deepakjose_/" class="social-link" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                  <li class="list-inline-item"><a href="https://www.linkedin.com/in/deepak-jose-60953b186/" class="social-link" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- End-->
+      
+            <!-- Team item-->
+            <div class="col-xl-3 col-sm-6 mb-5">
+              <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/mcyvnHs/ABRAHAM-J-0.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">Abraham Jerson</h5><span class="small text-uppercase text-muted">Chief operating officer</span>
+                <ul class="social mb-0 list-inline mt-3">
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                  <li class="list-inline-item"><a href="https://www.instagram.com/abraham.jerson/" class="social-link" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- End-->
+      
+            <!-- Team item-->
+            <div class="col-xl-3 col-sm-6 mb-5">
+              <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/tQT0pbY/IMG-0423.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">Ebin Thankachan</h5><span class="small text-uppercase text-muted">Chief financial officer</span>
+                <ul class="social mb-0 list-inline mt-3">
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                  <li class="list-inline-item"><a href="https://www.instagram.com/ebin_thankchan/" class="social-link" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- End-->
+      
+            <!-- Team item-->
+            <div class="col-xl-3 col-sm-6 mb-5">
+              <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/JBbtxdH/IMG-20201018-WA0004.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h5 class="mb-0">Abishek Anil</h5><span class="small text-uppercase text-muted">Chief technology officer</span>
+                <ul class="social mb-0 list-inline mt-3">
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                  <li class="list-inline-item"><a href="https://www.instagram.com/mistawispa/" class="social-link" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                  <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- End-->
+      
+          </div>
+        </div>
+      </div>
+      
+      
+      <footer class="bg-dark pb-3">
+        <div class="container text-center">
+          <p class="font-italic text-muted mb-0"> <br> &copy; Copyrights ATS.com All rights reserved.</p>
+        </div>
+      </footer>
+      {% endblock content %}
 </body>
 </html>
