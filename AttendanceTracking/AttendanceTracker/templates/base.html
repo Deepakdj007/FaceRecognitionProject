@@ -26,21 +26,7 @@
             background-color: #13aa52;
             color: white;
         }
-        .btn{
-            font-size: medium;
-            padding: 11px 20px;
-            background-color: transparent;
-            border-color: transparent;
-        }
-        .btn:hover{
-            background-color: transparent;
-        }
-        .btn:active{
-            background-color: transparent;
-        }
-        .btn:focus{
-            background-color: transparent;
-        }
+    
     </style>
 </head>
 
@@ -56,11 +42,11 @@
                 <img src="https://i.ibb.co/R3knSwW/Picture1.png" alt="Picture2-min" border="0" class="img-fluid" alt="ATS logo" width="47px" height="47px">
                 &nbsp; &nbsp; &nbsp; <br>
                 <li class="nav-item active">
-                    <a href="{% url 'home' %}"><button class="btn_hm"> Home</button></a>
+                    <a href="{% url 'about_us' %}"><button class="btn_hm"> Home</button></a>
                 </li>&nbsp;&nbsp;
                 <li class="nav-item">
                 <div class="dropdown show">
-                    <a class="btn btn-secondary btn-lg dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Features</a>
+                    <button class="button-2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="text">Features</span></button>
                     <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
                       <a class="dropdown-item" href="{% url 'mark_attendance' %}">Take Attendance</a>
                       <a class="dropdown-item" href="{% url 'view_attendance' %}">View Attendance</a>
@@ -74,9 +60,6 @@
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li>
-                    <a href="{% url 'about_us' %}"><button class="btn_ft"> About Us</button></a>
-                </li>
                 <li class="nav-item">
                     {% if user.is_authenticated %}
                     <a href="{% url 'logout' %}" style="text-decoration: none;"><button class="button-2" role="button"><span class="text">Sign out</span></button></a> 
