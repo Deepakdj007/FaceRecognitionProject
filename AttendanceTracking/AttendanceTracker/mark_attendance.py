@@ -101,6 +101,32 @@ def validate(C, P):
         quit()
 
 def updateAttendance(C, P, l):
+    
+    find = {
+        date.today().strftime('%Y-%m-%d'): {
+            '$exists': False
+        }
+    }
+
+    x = coll[1].count_documents(find)
+
+    if x:
+        update = {
+            '$set': {
+                date.today().strftime('%Y-%m-%d'): {
+                    'P1': 0,
+                    'P2': 0,
+                    'P3': 0,
+                    'P4': 0,
+                    'P5': 0,
+                    'P6': 0,
+                    'P7': 0
+                }
+            }
+        }
+
+        x = coll[1].update_many(null, update)
+    
     find = {
         'class': C
     }
@@ -142,45 +168,4 @@ def updateAttendance(C, P, l):
             }
 
             x = coll[1].update_one(find, update)
-
-"""    
-    find = {
-        date.today().strftime('%Y-%m-%d'): {
-            '$exists': False
-        }
-    }
-
-    x = coll[1].count_documents(find)
-
-    if x:
-        update = {
-            '$set': {
-                date.today().strftime('%Y-%m-%d'): {
-                    'P1': 0,
-                    'P2': 0,
-                    'P3': 0,
-                    'P4': 0,
-                    'P5': 0,
-                    'P6': 0,
-                    'P7': 0
-                }
-            }
-        }
-
-        x = coll[1].update_many(null, update)
                
-    for _ in l:
-        find = {
-            'RETID': _
-        }
-
-        update = {
-            '$set': {
-                f'{date.today().strftime("%Y-%m-%d")}.P{P}': 1
-            }
-        }
-
-        x = coll[0].update_many(find, update)
-
-    for _ in 
-"""
