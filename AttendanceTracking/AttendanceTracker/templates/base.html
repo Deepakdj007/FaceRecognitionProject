@@ -15,6 +15,33 @@
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
     {% load static %}
     <link rel="icon"href="{% static 'favicon.ico' %}">
+    <style>
+        .dropdown-menu-dark{
+            background-color: rgb(44, 47, 54);
+        }
+        .dropdown-item{
+            color: white;
+        }
+        .dropdown-item:hover{
+            background-color: #13aa52;
+            color: white;
+        }
+        .btn{
+            font-size: medium;
+            padding: 11px 20px;
+            background-color: transparent;
+            border-color: transparent;
+        }
+        .btn:hover{
+            background-color: transparent;
+        }
+        .btn:active{
+            background-color: transparent;
+        }
+        .btn:focus{
+            background-color: transparent;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,22 +57,22 @@
                 &nbsp; &nbsp; &nbsp; <br>
                 <li class="nav-item active">
                     <a href="{% url 'home' %}"><button class="btn_hm"> Home</button></a>
-                </li>&nbsp;<br>
+                </li>&nbsp;&nbsp;
                 <li class="nav-item">
-                    <a href="{% url 'view_attendance' %}"><button class="btn_ft">View Attendance</button></a>
-                </li>&nbsp;<br>
-                <li class="nav-item">
-                    <a  href="{% url 'edit_attendance' %}"><button class="btn_ft">Edit Attendance</button></a>
-                </li>&nbsp;<br>
-                <li class="nav-item">
-                    <a href="{% url 'mark_attendance' %}"><button class="btn_ft"> Take Attendance</button></a>
-                </li>&nbsp;<br>
-                <li class="nav-item">
-                    <a href="{% url 'notification' %}"><button class="btn_ft"> Send Notification</button></a>
-                </li>
+                <div class="dropdown show">
+                    <a class="btn btn-secondary btn-lg dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Features</a>
+                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="{% url 'mark_attendance' %}">Take Attendance</a>
+                      <a class="dropdown-item" href="{% url 'view_attendance' %}">View Attendance</a>
+                      <a class="dropdown-item" href="{% url 'edit_attendance' %}">Edit Attendance</a>
+                      <a class="dropdown-item" href="{% url 'notification' %}">Send Notification</a>
+                      <a class="dropdown-item" href="#">Generate report</a>
+                    </div>
+                  </div>
+                  </li>
             </ul>
         </div>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li>
                     <a href="{% url 'about_us' %}"><button class="btn_ft"> About Us</button></a>
