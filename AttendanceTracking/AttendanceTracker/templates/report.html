@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Report</title>
+    <link rel="stylesheet" href="https://app.staticsave.com/atsfacereccss/features.css">
+</head>
+    {% extends 'base.html' %}
+    {% block content %}
+    <body class="gradient-custom">
+    <section>
+      <br><br><br><br><br>
+      <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-5">
+          <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+            <h1 class="my-5 display-5 fw-bold ls-tight" style="color: rgba(44, 47, 54, 0.974)">Generate Report <br />
+            </h1>
+            <p class="mb-4 opacity-70" style="color: rgba(80, 85, 95, 0.974)">
+              Generate report of a particular day by selecting the date <br> and the class name.
+            </p>
+          </div>
+              <div class="box">
+    <h2 style="color: rgb(255, 255, 255);"> <br> Enter Details</h2>
+    <br>
+    <form method="post" action="{% url 'generate_report' %}">
+      {% csrf_token %}
+        <label style="color: rgb(255, 255, 255);" for="from">From</label>
+        <input type="date" id="from" name="from" placeholder = "yyyy-mm-dd" value="" min="1997-01-01">
+
+        <label style="color: rgb(255, 255, 255);" for="to">To</label>
+        <input type="date" id="to" name="to" placeholder = "yyyy-mm-dd" value="" min="1997-01-01">
+
+        <label style="color: rgb(255, 255, 255);" for="class">Class</label>
+        <select id="class" name="class">
+          <option value="S8CSEa">S8 CSE alpha</option>
+          <option value="S8CSEb">S8 CSE beta</option>
+          <option value="S8CSEc">S8 CSE gamma</option>
+        </select>
+        <div>
+        <br>
+        <br>
+        <input type="submit" value="Submit">
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+</body>
+      {% endblock %}
+
+</html>

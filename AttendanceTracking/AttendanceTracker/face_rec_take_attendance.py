@@ -30,7 +30,7 @@ def addId(C, P, attendanceSheet):
 
 def take_attendance(test, C, P):
     
-    clf = pickle.load(open('F:\Deepak_Jose_RSET\FaceRecognitionProject\_attendance_model.sav','rb'))
+    clf = pickle.load(open('F:\Deepak_Jose_RSET\FaceRecognitionProject\_attendance_model2.sav','rb'))
     
     # Load the test image with unknown faces into a numpy array
     test_image = face_recognition.load_image_file(test)
@@ -56,10 +56,10 @@ def take_attendance(test, C, P):
         name = clf.predict([test_img_encoding])
         student_name = name[0]
         
-        """       
+             
         cv2.rectangle(test_image,(x1,y1),(x2,y2),(0,255,0),2)
         cv2.putText(test_image,student_name,(x1+6,y2+25),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,0,0),2)
-        """
+        
        
 
         attendanceSheet.add(student_name)
@@ -69,13 +69,13 @@ def take_attendance(test, C, P):
     
   
    
-    """    
+    
     cv2.imshow('Webcam', cv2.cvtColor(test_image,cv2.COLOR_BGR2RGB))
     while(1):
         k = cv2.waitKey(33)
         if k==27:
             break # Esc key to stop
-    """
+    
     
 
 def main(class_name,period,image):

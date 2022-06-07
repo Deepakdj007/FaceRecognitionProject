@@ -148,4 +148,4 @@ LOGOUT_REDIRECT_URL = "home"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = TRUE
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

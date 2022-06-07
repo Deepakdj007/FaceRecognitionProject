@@ -26,5 +26,7 @@ path('Attendance/edit', views.edit_attendance_page,
      name='edit_attendance'),
 path('Attendance/edit_table',views.edit_table , name='edit_table'),
 path('Attendance/return_edited_values',views.return_edit_table , name='return_edit_table'),
+path('Attendance/report_page',views.report_page , name='report'),
+path('Attendance/generate_report',views.generate_report , name='generate_report'),
 ]
 

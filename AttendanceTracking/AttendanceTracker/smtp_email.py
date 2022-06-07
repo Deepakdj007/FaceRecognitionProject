@@ -18,7 +18,7 @@ def notify_people(Class_name):
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, message)
-            
+            server.quit()
 def main():
     notify_people("S8CSEa(old)")
 

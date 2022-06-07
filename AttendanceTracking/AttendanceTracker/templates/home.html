@@ -31,7 +31,9 @@
           }
 
     
-          /* Height for devices larger than 576px */
+          .btn-secondary{
+            background-color: rgb(28, 158, 245);
+          }
 
     </style>
 </head>
@@ -72,7 +74,7 @@
       </header>
 
       <!--cards-->
-     <div class="bg-white py-5">
+     <div class="bg-white py-5" id="features">
         <div class="col-lg-6"><h1 class="display-4"><center>Features</center></h1></div>
         <section class="text-center">
         <div class="container py-5">
@@ -137,14 +139,14 @@
               <div class="card" style="width: 18rem;">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                   <img src="https://i.ibb.co/FYzh1TB/Slide6.png" class="img-fluid" />
-                  <a href="{% url 'notification' %}">
+                  <a href="{% url 'report' %}">
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                   </a>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Generate Report</h5>
                   <p class="card-text">Generate Attendance report of a particular day by selecting the class.</p>
-                  <a href="" class="btn btn-primary stretched-link">Start</a>
+                  <a href="{% url 'report' %}" class="btn btn-primary stretched-link">Start</a>
                 </div>
               </div>
             </div>
@@ -168,9 +170,9 @@
                 for this problem. <br><br> We propose an effective, accurate and automated attendance tracking system
                 that uses computer vision facial recognition algorithms that
                 could track, mark and review attendance within seconds.</p>
-              <p class="lead text-muted"><a href="#" class="text-muted"> 
+              <!--<p class="lead text-muted"><a href="#" class="text-muted"> 
                           <br> <u>Know more about us. </u></a>
-              </p>
+              </p>-->
             </div>
             <div class="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png" alt="" class="img-fluid"></div>
           </div>
@@ -186,7 +188,7 @@
                 computer vision model to recognize students from images. It is aimed for an academic
                 environment where faculties find it difficult to take attendance manually. It is designed
                 to be quick, accurate, reliable and to automate almost all the administrative tasks that
-                are related to taking attendance and dealing with reports.</p><a href="#" class="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
+                are related to taking attendance and dealing with reports.</p><!--<a href="#" class="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>-->
             </div>
             <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img src="https://bootstrapious.com/i/snippets/sn-about/img-1.jpg" alt="" class="img-fluid mb-4 mb-lg-0"></div>
           </div>
@@ -195,7 +197,7 @@
             <div class="col-lg-6"><i class="fa fa-leaf fa-2x mb-3 text-primary"></i>
               <h2 class="font-weight-light">What do we offer?</h2>
               <p class="font-italic text-muted mb-4">The features that we provide include options to take attendance, view attendance, 
-                  edit attendance, send notifications to students with an attendance percentage of under 75, and generate reports.</p><a href="#" class="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
+                  edit attendance, send notifications to students with an attendance percentage of under 75, and generate reports.</p><!--<a href="#" class="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>-->
             </div>
           </div>
         </div>
@@ -215,7 +217,7 @@
 
             <div class="col-xl-3 col-sm-6 mb-5">
               <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/q1XhszN/Deepak-Jose-copy.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                <h5 class="mb-0">Deepak Jose</h5><span class="small text-uppercase text-muted">Chief executive officer</span>
+                <h5 class="mb-0">Deepak Jose</h5><span class="small text-uppercase text-muted">S8 CSE ALPHA</span>
                 <ul class="social mb-0 list-inline mt-3">
                   <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
                   <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-twitter"></i></a></li>
@@ -229,7 +231,7 @@
             <!-- Team item-->
             <div class="col-xl-3 col-sm-6 mb-5">
               <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/mcyvnHs/ABRAHAM-J-0.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                <h5 class="mb-0">Abraham Jerson</h5><span class="small text-uppercase text-muted">Chief operating officer</span>
+                <h5 class="mb-0">Abraham Jerson</h5><span class="small text-uppercase text-muted">S8 CSE ALPHA</span>
                 <ul class="social mb-0 list-inline mt-3">
                   <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
                   <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-twitter"></i></a></li>
@@ -243,7 +245,7 @@
             <!-- Team item-->
             <div class="col-xl-3 col-sm-6 mb-5">
               <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/tQT0pbY/IMG-0423.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                <h5 class="mb-0">Ebin Thankachan</h5><span class="small text-uppercase text-muted">Chief financial officer</span>
+                <h5 class="mb-0">Ebin Thankachan</h5><span class="small text-uppercase text-muted">S8 CSE ALPHA</span>
                 <ul class="social mb-0 list-inline mt-3">
                   <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
                   <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-twitter"></i></a></li>
@@ -257,7 +259,7 @@
             <!-- Team item-->
             <div class="col-xl-3 col-sm-6 mb-5">
               <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://i.ibb.co/JBbtxdH/IMG-20201018-WA0004.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                <h5 class="mb-0">Abishek Anil</h5><span class="small text-uppercase text-muted">Chief technology officer</span>
+                <h5 class="mb-0">Abishek Anil</h5><span class="small text-uppercase text-muted">S8 CSE ALPHA</span>
                 <ul class="social mb-0 list-inline mt-3">
                   <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
                   <li class="list-inline-item"><a href="#" class="social-link" target="_blank"><i class="fa fa-twitter"></i></a></li>
@@ -267,12 +269,10 @@
               </div>
             </div>
             <!-- End-->
-      
+            
           </div>
         </div>
       </div>
-      
-      
       <footer class="bg-dark pb-3">
         <div class="container text-center">
           <p class="font-italic text-muted mb-0"> <br> &copy; Copyrights ATS.com All rights reserved.</p>

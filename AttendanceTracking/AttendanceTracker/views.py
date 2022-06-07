@@ -10,7 +10,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from matplotlib.style import context
 import pandas as pd
-from . import view_attendance, face_rec_take_attendance, smtp_email, low_attendance_list, whatsapp, edit_attendance
+from . import view_attendance, face_rec_take_attendance, smtp_email, low_attendance_list, whatsapp, edit_attendance, Report_Generation
 from django.contrib.auth.decorators import login_required
 import json
 from django.template.loader import render_to_string
@@ -22,8 +22,8 @@ def view_table(request):
     
     if request.method == "GET":
         class_date = request.GET.get('class_date')
-        class_name = request.GET.get('class')
-    df = view_attendance.view_att(class_date, class_name)
+        class_from = request.GET.get('class')
+    df = view_attendance.view_att(class_date, class_from)
     json_records2 = df.reset_index().to_json(orient ='records')
     data2 = []
     data2 = json.loads(json_records2)
@@ -44,19 +44,19 @@ def mark_attendance_page(request):
 def attendance_marked(request):
     
     if request.POST.get('action') == 'create-post':
-            class_name = request.POST.get('class')
+            class_from = request.POST.get('class')
             period = request.POST.get('hour')
             image = request.FILES.get('image') # request.FILES used for to get files
-            face_rec_take_attendance.main(class_name, int(period),image)
+            face_rec_take_attendance.main(class_from, int(period),image)
     return render(request, 'attendance_marked.html')
 
 @login_required
 def send_notification(request):
     if request.method == "POST":
-        class_name = request.POST['class']
-        request.session['Class_name'] = class_name
+        class_from = request.POST['class']
+        request.session['Class_from'] = class_from
         
-    a,b,df2 = low_attendance_list.low_attendance(class_name)
+    a,b,df2 = low_attendance_list.low_attendance(class_from)
     json_records = df2.reset_index().to_json(orient ='records')
     data = []
     data = json.loads(json_records)
@@ -65,10 +65,10 @@ def send_notification(request):
 
 @login_required
 def notified(request):
-    if request.method == 'GET' and 'run_mail' in request.GET:
-        smtp_email.notify_people(request.session.get('Class_name'))
-    if request.method == 'GET' and 'run_whatsapp' in request.GET:
-        whatsapp.whatsapp_message(request.session.get('Class_name'))
+    if request.method == 'POST' and 'run_mail' in request.POST:
+        smtp_email.notify_people(request.session.get('Class_from'))
+    if request.method == 'POST' and 'run_whatsapp' in request.POST:
+        whatsapp.whatsapp_message(request.session.get('Class_from'))
     
     return render(request, 'notified.html',{})
     
@@ -80,11 +80,11 @@ def notification(request):
 def edit_table(request):
     if request.method == "GET":
         class_date = request.GET.get('class_date')
-        class_name = request.GET.get('class')
-    request.session['class_name'] = class_name
+        class_from = request.GET.get('class')
+    request.session['class_from'] = class_from
     request.session['class_date'] = class_date
 
-    df = edit_attendance.view_today_att(class_date, class_name)
+    df = edit_attendance.view_today_att(class_date, class_from)
     json_records3 = df.reset_index().to_json(orient ='records')
     data3 = []
     data3 = json.loads(json_records3)
@@ -95,12 +95,26 @@ def edit_table(request):
 def return_edit_table(request):
     if request.method == 'POST':
         data = request.POST.getlist('data1[]')
-        class_name = request.session['class_name']
+        class_from = request.session['class_from']
         class_date = request.session['class_date']
-        edit_attendance.update_table(data,class_name,class_date)
+        edit_attendance.update_table(data,class_from,class_date)
     return HttpResponse("Success!") # Sending an success response
 
+@login_required
+def report_page(request):
+    return render(request, 'report.html',{})
 
+@login_required
+def generate_report(request):
+    if request.method == "POST":
+        From = request.POST.get('from')
+        to = request.POST.get('to')
+        Class = request.POST.get('class')
+        print(From,to,Class)
+        Report_Generation.get_report(From,to,Class)
+    return render(request, 'home.html')
+    
+    
 
     
     
