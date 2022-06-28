@@ -7,8 +7,8 @@ def notify_people(Class_name):
 
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
-    sender_email = "facerec4@gmail.com"
-    password = "ssihxhwzoggdypya"
+    sender_email = "facerec1234@gmail.com"
+    password = "brnedwgnhzyvcftn"
 
     for eid in email:
         receiver_email = eid

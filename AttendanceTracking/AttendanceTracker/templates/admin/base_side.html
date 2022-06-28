@@ -1,0 +1,9 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ title }} | {% trans "Custom Admin Title" %}{% endblock %}
+{% block extrastyle %}
+     <link rel="stylesheet" type="text/css" href="https://app.staticsave.com/project/admincolor.css"/>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

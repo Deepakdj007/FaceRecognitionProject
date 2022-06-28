@@ -110,7 +110,6 @@ def generate_report(request):
         From = request.POST.get('from')
         to = request.POST.get('to')
         Class = request.POST.get('class')
-        print(From,to,Class)
         Report_Generation.get_report(From,to,Class)
     return render(request, 'home.html')
     

@@ -14,7 +14,7 @@ def remove(string):
     return "".join(string.split())
 
 account_sid = 'ACab5110bbba2f494759676b42f487af56'
-auth_token = '4b78df5c7f25bccb8d807a31d6ddbaf2'
+auth_token = '545ecbb8095b8e7abf014fc19b585288'
 client = Client(account_sid, auth_token)
 
 def whatsapp_message(Class_name):

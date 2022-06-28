@@ -62,9 +62,11 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     {% if user.is_authenticated %}
+                    <a href="{% url 'admin:index' %}" style="text-decoration: none;"><button class="button-2" role="button"><span class="text">Admin</span></button></a>
                     <a href="{% url 'logout' %}" style="text-decoration: none;"><button class="button-2" role="button"><span class="text">Sign out</span></button></a>
                     {% else %}
-                    <a href="{% url 'login' %}" style="text-decoration: none;"><button class="button-2" role="button"><span class="text">Sign in</span></button></a> 
+                    <a href="{% url 'admin:index' %}" style="text-decoration: none;"><button class="button-2" role="button"><span class="text">Admin</span></button></a>
+                    <a href="{% url 'login' %}" style="text-decoration: none;"><button class="button-2" role="button"><span class="text">Sign in</span></button></a>
                     {% endif %}
                 </li>
             </ul>
