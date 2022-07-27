@@ -10,7 +10,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from matplotlib.style import context
 import pandas as pd
-from . import view_attendance, face_rec_take_attendance, smtp_email, low_attendance_list, whatsapp, edit_attendance, Report_Generation
+from . import Report_Generation, view_attendance, face_rec_take_attendance, smtp_email, low_attendance_list, whatsapp, edit_attendance
 from django.contrib.auth.decorators import login_required
 import json
 from django.template.loader import render_to_string
